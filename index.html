@@ -3,6 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<script src="js/Ajax.js"></script>
+	<script>
+		window.onload = () => {
+			new Ajax(
+				'http://meteo-ormf.nicolaschoquet.fr/dev/meteo/get',
+				'get',
+				[]
+			).request((datas) => {
+				// success
+				document.querySelector('body').innerHTML = datas.response.get('text');
+				console.log(datas.response.type);
+				console.log(datas.response.get());
+				let data = datas.response.get('json');
+				console.log(data ? data[0].date : '');
+			}//, (datas) => {
+				// fail
+//				console.log('error request');
+//				alert('Request failed.  Returned status of ' + datas.status);
+			/*}*/);
+		}
+	</script>
 </head>
 <body>
 
